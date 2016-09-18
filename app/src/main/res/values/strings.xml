@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MemoMe</string>
+    <string-array name="start_times">
+        <item>8:00 am</item>
+        <item>9:00 am</item>
+    </string-array>
+    <string-array name="end_times">
+        <item>9:00 pm</item>
+        <item>10:00 pm</item>
+    </string-array>
+</resources>
