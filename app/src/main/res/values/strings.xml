@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">MemoMe</string>
+
     <string-array name="start_times">
         <item>8:00 am</item>
         <item>9:00 am</item>
@@ -7,5 +8,16 @@
     <string-array name="end_times">
         <item>9:00 pm</item>
         <item>10:00 pm</item>
+    </string-array>
+
+    <string-array name="quotes">
+        <item>Patience is not simply the ability to wait - it's how we behave while we're waiting</item>
+        <item>No act of kindness, however small, is wasted</item>
+        <item>Learn everything you can, anytime you can, from anyone you can - there will always come a time when you will be grateful you did</item>
+        <item>Positive culture comes from being mindful, and respecting your coworkers, and being empathetic</item>
+        <item>Do not spoil what you have by desiring what you have not; remember that what you now have was once among the things you only hoped for</item>
+        <item>Some people grumble that roses have thorns; I am grateful that thorns have roses</item>
+        <item>Feeling gratitude and not expressing it is like wrapping a present and not giving it</item>
+        <item>What separates privilege from entitlement is gratitude</item>
     </string-array>
 </resources>
