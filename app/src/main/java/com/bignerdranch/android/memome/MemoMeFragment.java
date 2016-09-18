@@ -1,5 +1,6 @@
 package com.bignerdranch.android.memome;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,15 @@ public class MemoMeFragment extends Fragment {
     private Spinner startSpinner;
     private Spinner endSpinner;
     private Button submitButton;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // start the memo service
+        Intent i = MemoMeService.newIntent(getActivity());
+        getActivity().startService(i);
+    }
 
     @Nullable
     @Override
