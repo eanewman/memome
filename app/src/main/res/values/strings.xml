@@ -20,4 +20,6 @@
         <item>Feeling gratitude and not expressing it is like wrapping a present and not giving it</item>
         <item>What separates privilege from entitlement is gratitude</item>
     </string-array>
+
+    <string name="new_memo_title">STOP! Read this.</string>
 </resources>
