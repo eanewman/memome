@@ -34,7 +34,7 @@ public class Preferences {
 
     public static int getEndTime(Context context) {
         int endTime = PreferenceManager.getDefaultSharedPreferences(context)
-                .getInt(PREF_END_TIME, 21);
+                .getInt(PREF_END_TIME, 22);
         return endTime;
     }
 }

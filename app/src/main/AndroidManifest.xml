@@ -15,9 +15,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".MessageActivity"
-            android:label="MemoMe">
+            android:label="@string/app_name">
         </activity>
         <service android:name=".MemoMeService" />
+        <receiver android:name=".MessageNotifier" />
     </application>
 
 </manifest>

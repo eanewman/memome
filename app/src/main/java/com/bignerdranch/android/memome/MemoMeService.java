@@ -9,42 +9,56 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.SystemClock;
 import android.support.v4.app.NotificationManagerCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
 
 public class MemoMeService extends IntentService {
     private static final String TAG = "MemoMeService";
 
     private static final int INTERVAL = 1000 * 60; // 60 seconds
 
-    public static Intent newIntent(Context context) {
-        return new Intent(context, MemoMeService.class);
-    }
-
     public MemoMeService() {
         super(TAG);
     }
 
     public static void setServiceAlarm(Context context) {
-        Intent i = MemoMeService.newIntent(context);
-        PendingIntent pi = PendingIntent.getService(context,0, i, 0);
+        // create intent to be housed in the notification
+        Intent i = new Intent(context, MessageActivity.class);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+        stackBuilder.addParentStack(MessageActivity.class);
+        stackBuilder.addNextIntent(i);
+        PendingIntent pi = PendingIntent.getActivity(context,0, i, 0);
 
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        // create notification
+        Resources resources = context.getResources();
+        Notification notification = new NotificationCompat.Builder(context)
+                .setTicker(resources.getString(R.string.new_memo_title))
+                .setSmallIcon(R.drawable.ic_memo_notification_image)
+                .setContentTitle(resources.getString(R.string.new_memo_title))
+                .setContentIntent(pi)
+                .setAutoCancel(true)
+                .build();
 
-        // only schedule alarm if we're in between the user-specified start and end time
+        // create notification intent
+        Intent notificationIntent = new Intent(context, MessageNotifier.class);
+        notificationIntent.putExtra(MessageNotifier.NOTIFICATION, notification);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        // schedule an alarm with the notification intent
+        // but only if we're between the user-specified start and end times
         int startTime = Preferences.getStartTime(context);
         int endTime = Preferences.getEndTime(context);
-
         int currentHour = Integer.valueOf(new SimpleDateFormat("HH").format(new Date()));
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         if (currentHour >= startTime && currentHour <= endTime) {
-            alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(), INTERVAL, pi);
+            alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(), INTERVAL, pendingIntent);
         } else {
-            alarmManager.cancel(pi);
-            pi.cancel();
+            alarmManager.cancel(pendingIntent);
+            pendingIntent.cancel();
         }
     }
 
@@ -55,7 +69,6 @@ public class MemoMeService extends IntentService {
         Intent i = new Intent(this, MessageActivity.class);
         PendingIntent pi = PendingIntent.getActivity(this, 0, i, 0);
 
-        // TODO: update this notification to start the app (main activity) and update the text.
         Resources resources = this.getResources();
         Notification notification = new NotificationCompat.Builder(this)
                 .setTicker(resources.getString(R.string.new_memo_title))

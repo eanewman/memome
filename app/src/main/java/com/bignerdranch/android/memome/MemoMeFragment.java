@@ -1,6 +1,5 @@
 package com.bignerdranch.android.memome;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MemoMeFragment extends Fragment {
@@ -22,9 +20,8 @@ public class MemoMeFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // start the memo service
-        Intent i = MemoMeService.newIntent(getActivity());
-        getActivity().startService(i);
+        // set an alarm that will spin up the message activity
+        MemoMeService.setServiceAlarm(getActivity());
     }
 
     @Nullable
