@@ -11,6 +11,10 @@ import android.preference.PreferenceManager;
 public class Preferences {
     private static final String PREF_START_TIME = "startTime";
     private static final String PREF_END_TIME = "endTime";
+    private static final String PREF_START_TIME_SPINNER_DATA_STRING = "startTimeSpinnerDataString";
+    private static final String PREF_END_TIME_SPINNER_DATA_STRING = "endTimeSpinnerDataString";
+
+    // start time ----------------------------------------------------------------------------------
 
     public static void setStartTime(Context context, int startTime) {
         PreferenceManager.getDefaultSharedPreferences(context)
@@ -20,21 +24,45 @@ public class Preferences {
     }
 
     public static int getStartTime(Context context) {
-        int startTime = PreferenceManager.getDefaultSharedPreferences(context)
+        return PreferenceManager.getDefaultSharedPreferences(context)
                 .getInt(PREF_START_TIME, 8);
-        return startTime;
     }
+
+    public static void setStartTimeSpinnerDataString(Context context, String spinnerDataString) {
+        PreferenceManager.getDefaultSharedPreferences(context)
+                .edit()
+                .putString(PREF_START_TIME_SPINNER_DATA_STRING, spinnerDataString)
+                .apply();
+    }
+
+    public static String getStartTimeSpinnerDataString(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(PREF_START_TIME_SPINNER_DATA_STRING, context.getResources().getString(R.string.default_start_time));
+    }
+
+    // end time ------------------------------------------------------------------------------------
 
     public static void setEndTime(Context context, int endTime) {
         PreferenceManager.getDefaultSharedPreferences(context)
                 .edit()
-                .putInt(PREF_START_TIME, endTime)
+                .putInt(PREF_END_TIME, endTime)
                 .apply();
     }
 
     public static int getEndTime(Context context) {
-        int endTime = PreferenceManager.getDefaultSharedPreferences(context)
+        return PreferenceManager.getDefaultSharedPreferences(context)
                 .getInt(PREF_END_TIME, 22);
-        return endTime;
+    }
+
+    public static void setEndTimeSpinnerDataString(Context context, String spinnerDataString) {
+        PreferenceManager.getDefaultSharedPreferences(context)
+                .edit()
+                .putString(PREF_END_TIME_SPINNER_DATA_STRING, spinnerDataString)
+                .apply();
+    }
+
+    public static String getEndTimeSpinnerDataString(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(PREF_END_TIME_SPINNER_DATA_STRING, context.getResources().getString(R.string.default_end_time));
     }
 }

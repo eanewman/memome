@@ -19,7 +19,7 @@ import java.util.Date;
 public class MemoMeService extends IntentService {
     private static final String TAG = "MemoMeService";
 
-    private static final int INTERVAL = 1000 * 60; // 60 seconds
+    private static final int INTERVAL = 1000 * 60; // 1 hour
 
     public MemoMeService() {
         super(TAG);

@@ -1,14 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE resources [
+    <!ENTITY defaultStartTime "8:00 am|8">
+    <!ENTITY defaultEndTime "10:00 pm|22">
+    ]>
+
 <resources>
     <string name="app_name">MemoMe</string>
 
     <string-array name="start_times">
-        <item>8:00 am</item>
-        <item>9:00 am</item>
+        <item>5:00 am|5</item>
+        <item>6:00 am|6</item>
+        <item>7:00 am|7</item>
+        <item>&defaultStartTime;</item>
+        <item>9:00 am|9</item>
+        <item>10:00 am|10</item>
+        <item>11:00 am|11</item>
+        <item>12:00 pm|12</item>
     </string-array>
+    <string name="default_start_time">&defaultStartTime;</string>
+
     <string-array name="end_times">
-        <item>10:00 pm</item>
-        <item>11:00 pm</item>
+        <item>4:00 pm|16</item>
+        <item>5:00 pm|17</item>
+        <item>6:00 pm|18</item>
+        <item>7:00 pm|19</item>
+        <item>8:00 pm|20</item>
+        <item>9:00 pm|21</item>
+        <item>&defaultEndTime;</item>
+        <item>11:00 pm|23</item>
+        <item>12:00 am|24</item>
     </string-array>
+    <string name="default_end_time">&defaultEndTime;</string>
+
 
     <string-array name="quotes">
         <item>Patience is not simply the ability to wait - it\'s how we behave while we\'re waiting</item>
@@ -21,5 +44,5 @@
         <item>What separates privilege from entitlement is gratitude</item>
     </string-array>
 
-    <string name="new_memo_title">STOP! Read this.</string>
+    <string name="new_memo_title">STOP! Read.</string>
 </resources>
